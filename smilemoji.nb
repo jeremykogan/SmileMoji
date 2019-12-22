@@ -1,0 +1,926 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 12.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     35930,        916]
+NotebookOptionsPosition[     35637,        903]
+NotebookOutlinePosition[     35974,        918]
+CellTagsIndexPosition[     35931,        915]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"saturate", "[", "x_", "]"}], ":=", 
+   RowBox[{"Hue", "@@", 
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"#", "[", 
+          RowBox[{"[", "1", "]"}], "]"}], ",", 
+         RowBox[{".1", "+", 
+          RowBox[{"#", "[", 
+           RowBox[{"[", "2", "]"}], "]"}]}], ",", 
+         RowBox[{".1", "+", 
+          RowBox[{"#", "[", 
+           RowBox[{"[", "3", "]"}], "]"}]}]}], "}"}], "&"}], "@", 
+      RowBox[{"ColorConvert", "[", 
+       RowBox[{"x", ",", "\"\<HSB\>\""}], "]"}]}], ")"}]}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"eyeColor", "[", "img_", "]"}], ":=", 
+   RowBox[{"Graphics", "[", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"Apply", "[", 
+       RowBox[{"RGBColor", ",", 
+        RowBox[{"Flatten", "[", 
+         RowBox[{"PixelValue", "[", "\[IndentingNewLine]", 
+          RowBox[{
+           RowBox[{"Rasterize", "[", 
+            RowBox[{"Map", "[", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"ImageTrim", "[", 
+                RowBox[{"img", ",", "#"}], "]"}], "&"}], ",", 
+              RowBox[{"FindFaces", "[", "img", "]"}]}], "]"}], "]"}], ",", 
+           "\[IndentingNewLine]", 
+           RowBox[{"Flatten", "[", "\[IndentingNewLine]", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"Take", "[", 
+                RowBox[{
+                 RowBox[{"Flatten", "[", 
+                  RowBox[{"Take", "[", 
+                   RowBox[{
+                    RowBox[{"Partition", "[", 
+                    RowBox[{
+                    RowBox[{"Flatten", "[", 
+                    RowBox[{"FacialFeatures", "[", 
+                    RowBox[{
+                    RowBox[{"Rasterize", "[", 
+                    RowBox[{"Map", "[", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"ImageTrim", "[", 
+                    RowBox[{"img", ",", "#"}], "]"}], "&"}], ",", 
+                    RowBox[{"FindFaces", "[", "img", "]"}]}], "]"}], "]"}], 
+                    ",", "\"\<RightEyePoints\>\""}], "]"}], "]"}], ",", "2"}],
+                     "]"}], ",", 
+                    RowBox[{"{", "5", "}"}]}], "]"}], "]"}], ",", 
+                 RowBox[{"{", "1", "}"}]}], "]"}], "-", "2"}], ",", 
+              RowBox[{
+               RowBox[{"Take", "[", 
+                RowBox[{
+                 RowBox[{"Flatten", "[", 
+                  RowBox[{"Take", "[", 
+                   RowBox[{
+                    RowBox[{"Partition", "[", 
+                    RowBox[{
+                    RowBox[{"Flatten", "[", 
+                    RowBox[{"FacialFeatures", "[", 
+                    RowBox[{
+                    RowBox[{"Rasterize", "[", 
+                    RowBox[{"Map", "[", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"ImageTrim", "[", 
+                    RowBox[{"img", ",", "#"}], "]"}], "&"}], ",", 
+                    RowBox[{"FindFaces", "[", "img", "]"}]}], "]"}], "]"}], 
+                    ",", "\"\<RightEyePoints\>\""}], "]"}], "]"}], ",", "2"}],
+                     "]"}], ",", 
+                    RowBox[{"{", "5", "}"}]}], "]"}], "]"}], ",", 
+                 RowBox[{"{", "2", "}"}]}], "]"}], "+", "4"}]}], 
+             "\[IndentingNewLine]", "}"}], "]"}]}], "\[IndentingNewLine]", 
+          "]"}], "]"}]}], "]"}], ",", 
+      RowBox[{"Disk", "[", "]"}]}], "}"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"eyePoint", "[", "img_", "]"}], ":=", "\[IndentingNewLine]", 
+   RowBox[{"HighlightImage", "[", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"Rasterize", "[", 
+      RowBox[{"Map", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"ImageTrim", "[", 
+          RowBox[{"img", ",", "#"}], "]"}], "&"}], ",", 
+        RowBox[{"FindFaces", "[", "img", "]"}]}], "]"}], "]"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"Flatten", "[", "\[IndentingNewLine]", 
+      RowBox[{"{", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"Take", "[", 
+          RowBox[{
+           RowBox[{"Flatten", "[", 
+            RowBox[{"Take", "[", 
+             RowBox[{
+              RowBox[{"Partition", "[", 
+               RowBox[{
+                RowBox[{"Flatten", "[", 
+                 RowBox[{"FacialFeatures", "[", 
+                  RowBox[{
+                   RowBox[{"Rasterize", "[", 
+                    RowBox[{"Map", "[", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"ImageTrim", "[", 
+                    RowBox[{"img", ",", "#"}], "]"}], "&"}], ",", 
+                    RowBox[{"FindFaces", "[", "img", "]"}]}], "]"}], "]"}], 
+                   ",", "\"\<RightEyePoints\>\""}], "]"}], "]"}], ",", "2"}], 
+               "]"}], ",", 
+              RowBox[{"{", "5", "}"}]}], "]"}], "]"}], ",", 
+           RowBox[{"{", "1", "}"}]}], "]"}], "-", "2"}], ",", 
+        RowBox[{
+         RowBox[{"Take", "[", 
+          RowBox[{
+           RowBox[{"Flatten", "[", 
+            RowBox[{"Take", "[", 
+             RowBox[{
+              RowBox[{"Partition", "[", 
+               RowBox[{
+                RowBox[{"Flatten", "[", 
+                 RowBox[{"FacialFeatures", "[", 
+                  RowBox[{
+                   RowBox[{"Rasterize", "[", 
+                    RowBox[{"Map", "[", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"ImageTrim", "[", 
+                    RowBox[{"img", ",", "#"}], "]"}], "&"}], ",", 
+                    RowBox[{"FindFaces", "[", "img", "]"}]}], "]"}], "]"}], 
+                   ",", "\"\<RightEyePoints\>\""}], "]"}], "]"}], ",", "2"}], 
+               "]"}], ",", 
+              RowBox[{"{", "5", "}"}]}], "]"}], "]"}], ",", 
+           RowBox[{"{", "2", "}"}]}], "]"}], "+", "3.5"}]}], 
+       "\[IndentingNewLine]", "}"}], "\[IndentingNewLine]", "]"}]}], 
+    "\[IndentingNewLine]", "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"skinTone", "[", "img_", "]"}], ":=", 
+   RowBox[{"Graphics", "[", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"Lighter", "[", 
+      RowBox[{"Flatten", "[", 
+       RowBox[{"DominantColors", "[", 
+        RowBox[{
+         RowBox[{"Map", "[", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"ImageTrim", "[", 
+             RowBox[{"img", ",", "#"}], "]"}], "&"}], ",", 
+           RowBox[{"FindFaces", "[", "img", "]"}]}], "]"}], ",", "1"}], "]"}],
+        "]"}], "]"}], "\[IndentingNewLine]", "~", "Join", "~", 
+     RowBox[{"{", 
+      RowBox[{"Disk", "[", "]"}], "}"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"eyebrowPoint", "[", "img_", "]"}], ":=", "\[IndentingNewLine]", 
+   RowBox[{"HighlightImage", "[", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"Rasterize", "[", 
+      RowBox[{"Map", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"ImageTrim", "[", 
+          RowBox[{"img", ",", "#"}], "]"}], "&"}], ",", 
+        RowBox[{"FindFaces", "[", "img", "]"}]}], "]"}], "]"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"Flatten", "[", "\[IndentingNewLine]", 
+      RowBox[{"{", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"Take", "[", 
+         RowBox[{
+          RowBox[{"Flatten", "[", 
+           RowBox[{"Take", "[", 
+            RowBox[{
+             RowBox[{"Partition", "[", 
+              RowBox[{
+               RowBox[{"Flatten", "[", 
+                RowBox[{"FacialFeatures", "[", 
+                 RowBox[{
+                  RowBox[{"Rasterize", "[", 
+                   RowBox[{"Map", "[", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"ImageTrim", "[", 
+                    RowBox[{"img", ",", "#"}], "]"}], "&"}], ",", 
+                    RowBox[{"FindFaces", "[", "img", "]"}]}], "]"}], "]"}], 
+                  ",", "\"\<LeftEyebrowPoints\>\""}], "]"}], "]"}], ",", 
+               "2"}], "]"}], ",", 
+             RowBox[{"{", "3", "}"}]}], "]"}], "]"}], ",", 
+          RowBox[{"{", "1", "}"}]}], "]"}], ",", 
+        RowBox[{
+         RowBox[{"Take", "[", 
+          RowBox[{
+           RowBox[{"Flatten", "[", 
+            RowBox[{"Take", "[", 
+             RowBox[{
+              RowBox[{"Partition", "[", 
+               RowBox[{
+                RowBox[{"Flatten", "[", 
+                 RowBox[{"FacialFeatures", "[", 
+                  RowBox[{
+                   RowBox[{"Rasterize", "[", 
+                    RowBox[{"Map", "[", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"ImageTrim", "[", 
+                    RowBox[{"img", ",", "#"}], "]"}], "&"}], ",", 
+                    RowBox[{"FindFaces", "[", "img", "]"}]}], "]"}], "]"}], 
+                   ",", "\"\<LeftEyebrowPoints\>\""}], "]"}], "]"}], ",", 
+                "2"}], "]"}], ",", 
+              RowBox[{"{", "3", "}"}]}], "]"}], "]"}], ",", 
+           RowBox[{"{", "2", "}"}]}], "]"}], "-", "5"}]}], 
+       "\[IndentingNewLine]", "}"}], "\[IndentingNewLine]", "]"}]}], 
+    "\[IndentingNewLine]", "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"hairColor", "[", "img_", "]"}], ":=", 
+   RowBox[{"Graphics", "[", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"Apply", "[", 
+       RowBox[{"RGBColor", ",", 
+        RowBox[{"Flatten", "[", 
+         RowBox[{"PixelValue", "[", "\[IndentingNewLine]", 
+          RowBox[{
+           RowBox[{"Rasterize", "[", 
+            RowBox[{"Map", "[", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"ImageTrim", "[", 
+                RowBox[{"img", ",", "#"}], "]"}], "&"}], ",", 
+              RowBox[{"FindFaces", "[", "img", "]"}]}], "]"}], "]"}], ",", 
+           "\[IndentingNewLine]", 
+           RowBox[{"Flatten", "[", "\[IndentingNewLine]", 
+            RowBox[{"{", "\[IndentingNewLine]", 
+             RowBox[{
+              RowBox[{"Take", "[", 
+               RowBox[{
+                RowBox[{"Flatten", "[", 
+                 RowBox[{"Take", "[", 
+                  RowBox[{
+                   RowBox[{"Partition", "[", 
+                    RowBox[{
+                    RowBox[{"Flatten", "[", 
+                    RowBox[{"FacialFeatures", "[", 
+                    RowBox[{
+                    RowBox[{"Rasterize", "[", 
+                    RowBox[{"Map", "[", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"ImageTrim", "[", 
+                    RowBox[{"img", ",", "#"}], "]"}], "&"}], ",", 
+                    RowBox[{"FindFaces", "[", "img", "]"}]}], "]"}], "]"}], 
+                    ",", "\"\<LeftEyebrowPoints\>\""}], "]"}], "]"}], ",", 
+                    "2"}], "]"}], ",", 
+                   RowBox[{"{", "3", "}"}]}], "]"}], "]"}], ",", 
+                RowBox[{"{", "1", "}"}]}], "]"}], ",", 
+              RowBox[{
+               RowBox[{"Take", "[", 
+                RowBox[{
+                 RowBox[{"Flatten", "[", 
+                  RowBox[{"Take", "[", 
+                   RowBox[{
+                    RowBox[{"Partition", "[", 
+                    RowBox[{
+                    RowBox[{"Flatten", "[", 
+                    RowBox[{"FacialFeatures", "[", 
+                    RowBox[{
+                    RowBox[{"Rasterize", "[", 
+                    RowBox[{"Map", "[", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"ImageTrim", "[", 
+                    RowBox[{"img", ",", "#"}], "]"}], "&"}], ",", 
+                    RowBox[{"FindFaces", "[", "img", "]"}]}], "]"}], "]"}], 
+                    ",", "\"\<LeftEyebrowPoints\>\""}], "]"}], "]"}], ",", 
+                    "2"}], "]"}], ",", 
+                    RowBox[{"{", "3", "}"}]}], "]"}], "]"}], ",", 
+                 RowBox[{"{", "2", "}"}]}], "]"}], "-", "5"}]}], 
+             "\[IndentingNewLine]", "}"}], "\[IndentingNewLine]", "]"}]}], 
+          "]"}], "]"}]}], "]"}], ",", 
+      RowBox[{"Disk", "[", "]"}]}], "}"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"smilemoji", "[", "img_", "]"}], ":=", "\[IndentingNewLine]", 
+    RowBox[{"Graphics", "[", 
+     RowBox[{"{", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"Lighter", "[", 
+         RowBox[{"Flatten", "[", 
+          RowBox[{"DominantColors", "[", 
+           RowBox[{
+            RowBox[{"Map", "[", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"ImageTrim", "[", 
+                RowBox[{"img", ",", "#"}], "]"}], "&"}], ",", 
+              RowBox[{"FindFaces", "[", "img", "]"}]}], "]"}], ",", "1"}], 
+           "]"}], "]"}], "]"}], "~", "Join", "~", 
+        RowBox[{"{", 
+         RowBox[{"Disk", "[", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{"1.5", ",", 
+             RowBox[{"-", "1.5"}]}], "}"}], ",", "5"}], "]"}], "}"}]}], ",", 
+       "\[IndentingNewLine]", "\[IndentingNewLine]", 
+       RowBox[{"saturate", "[", "\[IndentingNewLine]", 
+        RowBox[{"Lighter", "[", 
+         RowBox[{"Apply", "[", 
+          RowBox[{"RGBColor", ",", 
+           RowBox[{"Flatten", "[", 
+            RowBox[{"PixelValue", "[", "\[IndentingNewLine]", 
+             RowBox[{
+              RowBox[{"Rasterize", "[", 
+               RowBox[{"Map", "[", 
+                RowBox[{
+                 RowBox[{
+                  RowBox[{"ImageTrim", "[", 
+                   RowBox[{"img", ",", "#"}], "]"}], "&"}], ",", 
+                 RowBox[{"FindFaces", "[", "img", "]"}]}], "]"}], "]"}], ",", 
+              "\[IndentingNewLine]", 
+              RowBox[{"Flatten", "[", "\[IndentingNewLine]", 
+               RowBox[{"{", 
+                RowBox[{
+                 RowBox[{
+                  RowBox[{"Take", "[", 
+                   RowBox[{
+                    RowBox[{"Flatten", "[", 
+                    RowBox[{"Take", "[", 
+                    RowBox[{
+                    RowBox[{"Partition", "[", 
+                    RowBox[{
+                    RowBox[{"Flatten", "[", 
+                    RowBox[{"FacialFeatures", "[", 
+                    RowBox[{
+                    RowBox[{"Rasterize", "[", 
+                    RowBox[{"Map", "[", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"ImageTrim", "[", 
+                    RowBox[{"img", ",", "#"}], "]"}], "&"}], ",", 
+                    RowBox[{"FindFaces", "[", "img", "]"}]}], "]"}], "]"}], 
+                    ",", "\"\<RightEyePoints\>\""}], "]"}], "]"}], ",", "2"}],
+                     "]"}], ",", 
+                    RowBox[{"{", "5", "}"}]}], "]"}], "]"}], ",", 
+                    RowBox[{"{", "1", "}"}]}], "]"}], "-", "2"}], ",", 
+                 RowBox[{
+                  RowBox[{"Take", "[", 
+                   RowBox[{
+                    RowBox[{"Flatten", "[", 
+                    RowBox[{"Take", "[", 
+                    RowBox[{
+                    RowBox[{"Partition", "[", 
+                    RowBox[{
+                    RowBox[{"Flatten", "[", 
+                    RowBox[{"FacialFeatures", "[", 
+                    RowBox[{
+                    RowBox[{"Rasterize", "[", 
+                    RowBox[{"Map", "[", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"ImageTrim", "[", 
+                    RowBox[{"img", ",", "#"}], "]"}], "&"}], ",", 
+                    RowBox[{"FindFaces", "[", "img", "]"}]}], "]"}], "]"}], 
+                    ",", "\"\<RightEyePoints\>\""}], "]"}], "]"}], ",", "2"}],
+                     "]"}], ",", 
+                    RowBox[{"{", "5", "}"}]}], "]"}], "]"}], ",", 
+                    RowBox[{"{", "2", "}"}]}], "]"}], "+", "4"}]}], 
+                "\[IndentingNewLine]", "}"}], "]"}]}], "]"}], "]"}]}], 
+          "\[IndentingNewLine]", "\[IndentingNewLine]", "]"}], "]"}], "]"}], 
+       ",", 
+       RowBox[{"Disk", "[", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"0", ",", "0"}], "}"}], ",", "1"}], "]"}], ",", 
+       RowBox[{"Disk", "[", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"3", ",", "0"}], "}"}], ",", "1"}], "]"}], ",", 
+       "\[IndentingNewLine]", "Black", ",", 
+       RowBox[{"Disk", "[", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"0", ",", "0"}], "}"}], ",", "0.4"}], "]"}], ",", 
+       RowBox[{"Disk", "[", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"3", ",", "0"}], "}"}], ",", "0.4"}], "]"}], ",", 
+       "\[IndentingNewLine]", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+       RowBox[{"Switch", "[", "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{
+          RowBox[{
+           RowBox[{"#", "[", 
+            RowBox[{"[", "2", "]"}], "]"}], "&"}], "@@", 
+          RowBox[{"FacialFeatures", "[", 
+           RowBox[{"img", ",", "\"\<Emotion\>\""}], "]"}]}], ",", 
+         "\[IndentingNewLine]", "\[IndentingNewLine]", "\"\<happiness\>\"", 
+         ",", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"Darker", "[", "Red", "]"}], ",", "\[IndentingNewLine]", 
+           "Thick", ",", 
+           RowBox[{"Disk", "[", 
+            RowBox[{
+             RowBox[{"{", 
+              RowBox[{"1.5", ",", 
+               RowBox[{"-", "2"}]}], "}"}], ",", "3", ",", 
+             RowBox[{"{", 
+              RowBox[{"Pi", ",", 
+               RowBox[{"2", "Pi"}]}], "}"}]}], "]"}], ",", 
+           "\[IndentingNewLine]", "White", ",", "\[IndentingNewLine]", 
+           RowBox[{"Rectangle", "[", 
+            RowBox[{
+             RowBox[{"{", 
+              RowBox[{"0.6", ",", 
+               RowBox[{"-", "2"}]}], "}"}], ",", 
+             RowBox[{"{", 
+              RowBox[{"1.4", ",", 
+               RowBox[{"-", "2.75"}]}], "}"}]}], "]"}], ",", 
+           "\[IndentingNewLine]", 
+           RowBox[{"Rectangle", "[", 
+            RowBox[{
+             RowBox[{"{", 
+              RowBox[{"1.6", ",", 
+               RowBox[{"-", "2"}]}], "}"}], ",", 
+             RowBox[{"{", 
+              RowBox[{"2.4", ",", 
+               RowBox[{"-", "2.75"}]}], "}"}]}], "]"}]}], "}"}], ",", 
+         "\[IndentingNewLine]", "\[IndentingNewLine]", "\"\<neutral\>\"", ",", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"Thickness", "[", "0.02", "]"}], ",", 
+           RowBox[{"Line", "[", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"-", "0.5"}], ",", 
+                RowBox[{"-", "3.25"}]}], "}"}], ",", 
+              RowBox[{"{", 
+               RowBox[{"3.5", ",", 
+                RowBox[{"-", "3.25"}]}], "}"}]}], "}"}], "]"}]}], "}"}], ",", 
+         "\[IndentingNewLine]", "\[IndentingNewLine]", "\"\<fear\>\"", ",", 
+         " ", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"Thickness", "[", "0.02", "]"}], ",", 
+           RowBox[{"Circle", "[", 
+            RowBox[{
+             RowBox[{"{", 
+              RowBox[{"1.5", ",", 
+               RowBox[{"-", "4"}]}], "}"}], ",", "2", ",", 
+             RowBox[{"{", 
+              RowBox[{"0", ",", "Pi"}], "}"}]}], "]"}]}], "}"}], ",", 
+         "\[IndentingNewLine]", "\[IndentingNewLine]", "\"\<sadness\>\"", ",",
+          " ", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"Thickness", "[", "0.02", "]"}], ",", 
+           RowBox[{"Circle", "[", 
+            RowBox[{
+             RowBox[{"{", 
+              RowBox[{"1.5", ",", 
+               RowBox[{"-", "4"}]}], "}"}], ",", "2", ",", 
+             RowBox[{"{", 
+              RowBox[{"0", ",", "Pi"}], "}"}]}], "]"}]}], "}"}], ",", 
+         "\[IndentingNewLine]", "\[IndentingNewLine]", "\"\<anger\>\"", ",", 
+         " ", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"Thickness", "[", "0.02", "]"}], ",", 
+           RowBox[{"Circle", "[", 
+            RowBox[{
+             RowBox[{"{", 
+              RowBox[{"1.5", ",", 
+               RowBox[{"-", "4"}]}], "}"}], ",", "2", ",", 
+             RowBox[{"{", 
+              RowBox[{"0", ",", "Pi"}], "}"}]}], "]"}]}], "}"}], ",", 
+         "\[IndentingNewLine]", "\[IndentingNewLine]", "\"\<disgust\>\"", ",",
+          " ", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"Thickness", "[", "0.02", "]"}], ",", 
+           RowBox[{"Circle", "[", 
+            RowBox[{
+             RowBox[{"{", 
+              RowBox[{"1.5", ",", 
+               RowBox[{"-", "4"}]}], "}"}], ",", "2", ",", 
+             RowBox[{"{", 
+              RowBox[{"0", ",", "Pi"}], "}"}]}], "]"}]}], "}"}], ",", 
+         "\[IndentingNewLine]", "\[IndentingNewLine]", "\"\<surprise\>\"", 
+         ",", 
+         RowBox[{"{", 
+          RowBox[{"Black", ",", 
+           RowBox[{"Disk", "[", 
+            RowBox[{
+             RowBox[{"{", 
+              RowBox[{"1.5", ",", 
+               RowBox[{"-", "3.5"}]}], "}"}], ",", "1.5"}], "]"}], ",", 
+           RowBox[{"Darker", "[", "Red", "]"}], ",", 
+           RowBox[{"Disk", "[", 
+            RowBox[{
+             RowBox[{"{", 
+              RowBox[{"1.5", ",", 
+               RowBox[{"-", "3.5"}]}], "}"}], ",", "1.25"}], "]"}]}], "}"}]}],
+         "\[IndentingNewLine]", "]"}], ",", "\[IndentingNewLine]", 
+       "\[IndentingNewLine]", 
+       RowBox[{"Thickness", "[", "0.02", "]"}], ",", 
+       RowBox[{"Apply", "[", 
+        RowBox[{"RGBColor", ",", 
+         RowBox[{"Flatten", "[", 
+          RowBox[{"PixelValue", "[", "\[IndentingNewLine]", 
+           RowBox[{
+            RowBox[{"Rasterize", "[", 
+             RowBox[{"Map", "[", 
+              RowBox[{
+               RowBox[{
+                RowBox[{"ImageTrim", "[", 
+                 RowBox[{"img", ",", "#"}], "]"}], "&"}], ",", 
+               RowBox[{"FindFaces", "[", "img", "]"}]}], "]"}], "]"}], ",", 
+            "\[IndentingNewLine]", 
+            RowBox[{"Flatten", "[", "\[IndentingNewLine]", 
+             RowBox[{"{", "\[IndentingNewLine]", 
+              RowBox[{
+               RowBox[{"Take", "[", 
+                RowBox[{
+                 RowBox[{"Flatten", "[", 
+                  RowBox[{"Take", "[", 
+                   RowBox[{
+                    RowBox[{"Partition", "[", 
+                    RowBox[{
+                    RowBox[{"Flatten", "[", 
+                    RowBox[{"FacialFeatures", "[", 
+                    RowBox[{
+                    RowBox[{"Rasterize", "[", 
+                    RowBox[{"Map", "[", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"ImageTrim", "[", 
+                    RowBox[{"img", ",", "#"}], "]"}], "&"}], ",", 
+                    RowBox[{"FindFaces", "[", "img", "]"}]}], "]"}], "]"}], 
+                    ",", "\"\<LeftEyebrowPoints\>\""}], "]"}], "]"}], ",", 
+                    "2"}], "]"}], ",", 
+                    RowBox[{"{", "3", "}"}]}], "]"}], "]"}], ",", 
+                 RowBox[{"{", "1", "}"}]}], "]"}], ",", 
+               RowBox[{
+                RowBox[{"Take", "[", 
+                 RowBox[{
+                  RowBox[{"Flatten", "[", 
+                   RowBox[{"Take", "[", 
+                    RowBox[{
+                    RowBox[{"Partition", "[", 
+                    RowBox[{
+                    RowBox[{"Flatten", "[", 
+                    RowBox[{"FacialFeatures", "[", 
+                    RowBox[{
+                    RowBox[{"Rasterize", "[", 
+                    RowBox[{"Map", "[", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"ImageTrim", "[", 
+                    RowBox[{"img", ",", "#"}], "]"}], "&"}], ",", 
+                    RowBox[{"FindFaces", "[", "img", "]"}]}], "]"}], "]"}], 
+                    ",", "\"\<LeftEyebrowPoints\>\""}], "]"}], "]"}], ",", 
+                    "2"}], "]"}], ",", 
+                    RowBox[{"{", "3", "}"}]}], "]"}], "]"}], ",", 
+                  RowBox[{"{", "2", "}"}]}], "]"}], "-", "5"}]}], 
+              "\[IndentingNewLine]", "}"}], "\[IndentingNewLine]", "]"}]}], 
+           "]"}], "]"}]}], "]"}], ",", "\[IndentingNewLine]", 
+       RowBox[{"Switch", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{
+           RowBox[{"#", "[", 
+            RowBox[{"[", "2", "]"}], "]"}], "&"}], "@@", 
+          RowBox[{"FacialFeatures", "[", 
+           RowBox[{"img", ",", "\"\<Emotion\>\""}], "]"}]}], ",", 
+         "\[IndentingNewLine]", "\"\<happiness\>\"", ",", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"Line", "[", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"-", "1"}], ",", "1.5"}], "}"}], ",", 
+              RowBox[{"{", 
+               RowBox[{"1", ",", "1.5"}], "}"}]}], "}"}], "]"}], ",", 
+           RowBox[{"Line", "[", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"{", 
+               RowBox[{"2", ",", "1.5"}], "}"}], ",", 
+              RowBox[{"{", 
+               RowBox[{"4", ",", "1.5"}], "}"}]}], "}"}], "]"}]}], "}"}], 
+         ",", "\"\<surprise\>\"", ",", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"Line", "[", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"-", "1"}], ",", "1.5"}], "}"}], ",", 
+              RowBox[{"{", 
+               RowBox[{"1", ",", "1.7"}], "}"}]}], "}"}], "]"}], ",", 
+           RowBox[{"Line", "[", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"{", 
+               RowBox[{"2", ",", "1.7"}], "}"}], ",", 
+              RowBox[{"{", 
+               RowBox[{"4", ",", "1.5"}], "}"}]}], "}"}], "]"}]}], "}"}], 
+         ",", "\"\<neutral\>\"", ",", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"Line", "[", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"-", "1"}], ",", "1.5"}], "}"}], ",", 
+              RowBox[{"{", 
+               RowBox[{"1", ",", "1.5"}], "}"}]}], "}"}], "]"}], ",", 
+           RowBox[{"Line", "[", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"{", 
+               RowBox[{"2", ",", "1.5"}], "}"}], ",", 
+              RowBox[{"{", 
+               RowBox[{"4", ",", "1.5"}], "}"}]}], "}"}], "]"}]}], "}"}], 
+         ",", "\"\<disgust\>\"", ",", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"Line", "[", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"-", "1"}], ",", "1.5"}], "}"}], ",", 
+              RowBox[{"{", 
+               RowBox[{"1", ",", "1.5"}], "}"}]}], "}"}], "]"}], ",", 
+           RowBox[{"Line", "[", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"{", 
+               RowBox[{"2", ",", "1.5"}], "}"}], ",", 
+              RowBox[{"{", 
+               RowBox[{"4", ",", "1.5"}], "}"}]}], "}"}], "]"}]}], "}"}], 
+         ",", "\"\<anger\>\"", ",", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"Line", "[", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"-", ".75"}], ",", "2"}], "}"}], ",", 
+              RowBox[{"{", 
+               RowBox[{"1.25", ",", ".5"}], "}"}]}], "}"}], "]"}], ",", 
+           RowBox[{"Line", "[", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"{", 
+               RowBox[{"1.75", ",", ".5"}], "}"}], ",", 
+              RowBox[{"{", 
+               RowBox[{"3.75", ",", "2"}], "}"}]}], "}"}], "]"}]}], "}"}], 
+         ",", "\"\<sadness\>\"", ",", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"Line", "[", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"-", "1.25"}], ",", ".5"}], "}"}], ",", 
+              RowBox[{"{", 
+               RowBox[{".75", ",", "2"}], "}"}]}], "}"}], "]"}], ",", 
+           RowBox[{"Line", "[", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"{", 
+               RowBox[{"2.25", ",", "2"}], "}"}], ",", 
+              RowBox[{"{", 
+               RowBox[{"4.25", ",", ".5"}], "}"}]}], "}"}], "]"}]}], "}"}], 
+         ",", "\"\<fear\>\"", ",", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"Line", "[", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"-", "1.25"}], ",", ".5"}], "}"}], ",", 
+              RowBox[{"{", 
+               RowBox[{".75", ",", "2"}], "}"}]}], "}"}], "]"}], ",", 
+           RowBox[{"Line", "[", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"{", 
+               RowBox[{"2.25", ",", "2"}], "}"}], ",", 
+              RowBox[{"{", 
+               RowBox[{"4.25", ",", ".5"}], "}"}]}], "}"}], "]"}]}], "}"}]}], 
+        "]"}], ",", "\[IndentingNewLine]", 
+       RowBox[{"Switch", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{
+           RowBox[{"#", "[", 
+            RowBox[{"[", "1", "]"}], "]"}], "&"}], "@", 
+          RowBox[{"FacialFeatures", "[", 
+           RowBox[{"img", ",", "\"\<Gender\>\""}], "]"}]}], ",", 
+         "\[IndentingNewLine]", "\"\<Male\>\"", ",", "\[IndentingNewLine]", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"Map", "[", 
+            RowBox[{
+             RowBox[{
+              RowBox[{"Style", "[", 
+               RowBox[{
+                RowBox[{"Text", "[", 
+                 RowBox[{"\"\<X\>\"", ",", "#"}], "]"}], ",", "40"}], "]"}], 
+              "&"}], ",", 
+             RowBox[{"N", "[", 
+              RowBox[{
+               RowBox[{"CirclePoints", "[", 
+                RowBox[{
+                 RowBox[{"{", 
+                  RowBox[{"1.5", ",", 
+                   RowBox[{"-", "1.5"}]}], "}"}], ",", 
+                 RowBox[{"{", 
+                  RowBox[{"5", ",", "0"}], "}"}], ",", "150"}], "]"}], "[", 
+               RowBox[{"[", 
+                RowBox[{";;", "75"}], "]"}], "]"}], "]"}]}], "]"}], ",", 
+           "\[IndentingNewLine]", 
+           RowBox[{"Map", "[", 
+            RowBox[{
+             RowBox[{
+              RowBox[{"Style", "[", 
+               RowBox[{
+                RowBox[{"Text", "[", 
+                 RowBox[{"\"\<X\>\"", ",", "#"}], "]"}], ",", "30"}], "]"}], 
+              "&"}], ",", 
+             RowBox[{"N", "[", 
+              RowBox[{
+               RowBox[{"CirclePoints", "[", 
+                RowBox[{
+                 RowBox[{"{", 
+                  RowBox[{"1.5", ",", 
+                   RowBox[{"-", "1.5"}]}], "}"}], ",", 
+                 RowBox[{"{", 
+                  RowBox[{"5.5", ",", "0"}], "}"}], ",", "200"}], "]"}], "[", 
+               
+               RowBox[{"[", 
+                RowBox[{"5", ";;", "92"}], "]"}], "]"}], "]"}]}], "]"}]}], 
+          "}"}], ",", "\[IndentingNewLine]", "\"\<Female\>\"", ",", 
+         "\[IndentingNewLine]", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"Map", "[", 
+            RowBox[{
+             RowBox[{
+              RowBox[{"Style", "[", 
+               RowBox[{
+                RowBox[{"Text", "[", 
+                 RowBox[{"\"\<X\>\"", ",", "#"}], "]"}], ",", "40"}], "]"}], 
+              "&"}], ",", 
+             RowBox[{"N", "[", 
+              RowBox[{
+               RowBox[{"CirclePoints", "[", 
+                RowBox[{
+                 RowBox[{"{", 
+                  RowBox[{"1.5", ",", 
+                   RowBox[{"-", "1.5"}]}], "}"}], ",", 
+                 RowBox[{"{", 
+                  RowBox[{"5", ",", "0"}], "}"}], ",", "150"}], "]"}], "[", 
+               RowBox[{"[", 
+                RowBox[{";;", "75"}], "]"}], "]"}], "]"}]}], "]"}], ",", 
+           "\[IndentingNewLine]", 
+           RowBox[{"Map", "[", 
+            RowBox[{
+             RowBox[{
+              RowBox[{"Style", "[", 
+               RowBox[{
+                RowBox[{"Text", "[", 
+                 RowBox[{"\"\<X\>\"", ",", "#"}], "]"}], ",", "30"}], "]"}], 
+              "&"}], ",", 
+             RowBox[{"N", "[", 
+              RowBox[{
+               RowBox[{"CirclePoints", "[", 
+                RowBox[{
+                 RowBox[{"{", 
+                  RowBox[{"1.5", ",", 
+                   RowBox[{"-", "1.5"}]}], "}"}], ",", 
+                 RowBox[{"{", 
+                  RowBox[{"5.5", ",", "0"}], "}"}], ",", "200"}], "]"}], "[", 
+               
+               RowBox[{"[", 
+                RowBox[{"13", ";;", "87"}], "]"}], "]"}], "]"}]}], "]"}], ",",
+            "\[IndentingNewLine]", 
+           RowBox[{"Map", "[", 
+            RowBox[{
+             RowBox[{
+              RowBox[{"Style", "[", 
+               RowBox[{
+                RowBox[{"Text", "[", 
+                 RowBox[{"\"\<X\>\"", ",", "#"}], "]"}], ",", "30"}], "]"}], 
+              "&"}], ",", 
+             RowBox[{"N", "[", 
+              RowBox[{
+               RowBox[{"CirclePoints", "[", 
+                RowBox[{
+                 RowBox[{"{", 
+                  RowBox[{"1.5", ",", 
+                   RowBox[{"-", "1.5"}]}], "}"}], ",", 
+                 RowBox[{"{", 
+                  RowBox[{"6", ",", "0"}], "}"}], ",", "200"}], "]"}], "[", 
+               RowBox[{"[", 
+                RowBox[{"13", ";;", "87"}], "]"}], "]"}], "]"}]}], "]"}], ",",
+            "\[IndentingNewLine]", 
+           RowBox[{"Table", "[", "\[IndentingNewLine]", 
+            RowBox[{
+             RowBox[{"Style", "[", 
+              RowBox[{
+               RowBox[{"{", 
+                RowBox[{
+                 RowBox[{"Text", "[", 
+                  RowBox[{"\"\<X\>\"", ",", 
+                   RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"-", "3.5"}], ",", "y"}], "}"}]}], "]"}], ",", 
+                 RowBox[{"Text", "[", 
+                  RowBox[{"\"\<X\>\"", ",", 
+                   RowBox[{"{", 
+                    RowBox[{"6.5", ",", "y"}], "}"}]}], "]"}], ",", " ", 
+                 RowBox[{"Text", "[", 
+                  RowBox[{"\"\<X\>\"", ",", 
+                   RowBox[{"{", 
+                    RowBox[{"7", ",", "y"}], "}"}]}], "]"}], ",", 
+                 RowBox[{"Text", "[", 
+                  RowBox[{"\"\<X\>\"", ",", 
+                   RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"-", "4"}], ",", "y2"}], "}"}]}], "]"}]}], "}"}], 
+               ",", "40"}], "]"}], ",", "\[IndentingNewLine]", 
+             RowBox[{"{", 
+              RowBox[{"y", ",", 
+               RowBox[{"-", "7"}], ",", ".25", ",", ".25"}], "}"}], ",", 
+             "\[IndentingNewLine]", 
+             RowBox[{"{", 
+              RowBox[{"y2", ",", 
+               RowBox[{"-", "7"}], ",", ".75", ",", ".25"}], "}"}]}], 
+            "\[IndentingNewLine]", "]"}]}], "\[IndentingNewLine]", "}"}]}], 
+        "]"}]}], "\[IndentingNewLine]", "}"}], "]"}]}], ";"}], 
+  "\[IndentingNewLine]", 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]"}], "Input",
+ CellChangeTimes->{{3.786042226342998*^9, 
+  3.786042301683755*^9}},ExpressionUUID->"5bd2e4e6-1d78-47c7-b860-\
+b1d193870dc1"]
+},
+WindowSize->{808, 610},
+WindowMargins->{{20, Automatic}, {Automatic, 44}},
+FrontEndVersion->"12.0 for Mac OS X x86 (64-bit) (April 8, 2019)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 35075, 881, 3181, "Input",ExpressionUUID->"5bd2e4e6-1d78-47c7-b860-b1d193870dc1"]
+}
+]
+*)
+
+(* End of internal cache information *)
+
